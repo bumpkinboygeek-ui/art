@@ -1,5 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="gallery-data.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0d0d0d;--text:#e8e0d4;--accent:#b8965a;--muted:#666;--nh:62px}
@@ -53,12 +54,12 @@ section.act{display:block}
 /* GALLERY */
 .gpage{padding:4.5rem 1.5rem 6rem}
 .gpage h2{text-align:center;font-size:.9rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:3rem}
-.masonry{columns:3 240px;gap:8px}
-.mi{break-inside:avoid;margin-bottom:8px;cursor:pointer;position:relative;overflow:hidden;background:#111}
+.masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;grid-auto-rows:4px;align-items:start}
+.mi{cursor:pointer;position:relative;overflow:hidden;background:#111}
 .mi img{width:100%;display:block;transition:opacity .35s,transform .35s}
 .mi:hover img{opacity:.6;transform:scale(1.02)}
 .mi .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:2.5rem .85rem .85rem;opacity:0;transition:opacity .3s;pointer-events:none}
-.mi:hover .cap,.mi.touched .cap{opacity:1}
+.mi:hover .cap{opacity:1}
 .cap .ct{font-family:-apple-system,sans-serif;font-size:.8rem;color:var(--text);font-weight:500}
 .cap .cm{font-family:-apple-system,sans-serif;font-size:.7rem;color:#999;margin-top:3px}
 
@@ -69,8 +70,6 @@ section.act{display:block}
 .lb-cap{margin-top:1.2rem;text-align:center;padding:0 3rem}
 .lb-cap .lbt{color:var(--text);font-size:.95rem}
 .lb-cap .lbm{font-family:-apple-system,sans-serif;color:var(--muted);font-size:.78rem;margin-top:5px}
-
-/* Lightbox controls */
 .lb-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem}
 .lb-top .lb-count-top{font-family:-apple-system,sans-serif;font-size:.72rem;letter-spacing:.15em;color:#555}
 .cls{background:none;border:none;color:#888;cursor:pointer;line-height:1;transition:color .2s;font-size:2rem;padding:.5rem;touch-action:manipulation;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
@@ -79,8 +78,6 @@ section.act{display:block}
 .nb:hover{color:var(--text);background:rgba(255,255,255,.08);border-color:#555}
 .nb.prv{left:.75rem}
 .nb.nxt{right:.75rem}
-
-/* Swipe hint — shows on touch devices only */
 .swipe-hint{position:absolute;bottom:1rem;font-family:-apple-system,sans-serif;font-size:.65rem;letter-spacing:.15em;color:#3a3a3a;display:none}
 
 /* CONTACT */
@@ -94,8 +91,6 @@ section.act{display:block}
 .socials a{font-family:-apple-system,sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding-bottom:3px;border-bottom:1px solid #333;transition:all .2s;touch-action:manipulation;min-height:44px;display:inline-flex;align-items:center}
 .socials a:hover{color:var(--text);border-color:var(--accent)}
 .divider{width:40px;height:1px;background:#2a2a2a;margin:3rem auto}
-
-/* FOOTER */
 footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-size:.72rem;letter-spacing:.1em;color:#3a3a3a;border-top:1px solid #161616}
 
 /* RESPONSIVE */
@@ -107,23 +102,17 @@ footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-
   nav ul{display:none}
   .hbg{display:flex;align-items:center}
   .hero-txt{padding:1.5rem 1.5rem 2rem}
-  .masonry{columns:2 140px;gap:6px}
-  .masonry .mi{margin-bottom:6px}
+  .masonry{grid-template-columns:repeat(2,1fr);gap:6px;grid-auto-rows:4px}
   .gpage{padding:4rem 1rem 5rem}
-  .nb{display:none} /* hide arrows on mobile — use swipe instead */
+  .nb{display:none}
   .swipe-hint{display:block}
   #lb img{max-width:96vw;max-height:70vh}
   .lb-cap{padding:0 1rem}
 }
 @media(max-width:480px){
-  .masonry{columns:1}
+  .masonry{grid-template-columns:1fr}
   .hero-txt h1{font-size:2.2rem}
   .con-in{padding:4rem 1.5rem}
-}
-
-/* Active touch state for gallery items on mobile */
-@media(hover:none){
-  .mi img{transition:opacity .2s}
 }
 </style>
 
@@ -147,7 +136,6 @@ footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-
   <a onclick="go('contact');closeMob()">Contact</a>
 </div>
 
-<!-- LIGHTBOX -->
 <div id="lb">
   <div class="lb-top">
     <span class="lb-count-top" id="lbC"></span>
@@ -163,7 +151,6 @@ footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-
   <div class="swipe-hint">Swipe to navigate</div>
 </div>
 
-<!-- HOME -->
 <section id="home" class="act">
   <div class="hero">
     <img src="images/5f27f4_d84ad927dcd64105adaae6f26dce2f5b.jpg" alt="Daniel Cooke artwork">
@@ -178,12 +165,9 @@ footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-in">
-    <div>
-      <img class="about-img" src="images/5f27f4_438a93b1abc942cea34fe144725078e7.jpg" alt="Daniel Cooke">
-    </div>
+    <div><img class="about-img" src="images/5f27f4_438a93b1abc942cea34fe144725078e7.jpg" alt="Daniel Cooke"></div>
     <div class="about-copy">
       <h2>About</h2>
       <p>I am primarily a self-taught artist. My recent and current work is focused on masculine identity, the loss of traditional livelihoods and the decay of the environments they once inhabited.</p>
@@ -198,7 +182,6 @@ footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-
   </div>
 </section>
 
-<!-- DRAWING -->
 <section id="drawing">
   <div class="gpage">
     <h2>Drawing / Mixed Media</h2>
@@ -206,7 +189,6 @@ footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-
   </div>
 </section>
 
-<!-- PAINTING -->
 <section id="painting">
   <div class="gpage">
     <h2>Painting</h2>
@@ -214,7 +196,6 @@ footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="con-in">
     <h2>Contact</h2>
@@ -229,129 +210,77 @@ footer{padding:2rem;text-align:center;font-family:-apple-system,sans-serif;font-
   </div>
 </section>
 
-<footer>&#169; 2023 Daniel Cooke &#8212; Portrait Artist</footer>
+<footer>&#169; 2026 Daniel Cooke &#8212; Portrait Artist</footer>
 
 <script>
-const W = id => `images/${id}`;
+const D = GALLERY_DATA.drawing;
+const P = GALLERY_DATA.painting;
 
-const D = [
-  {id:'5f27f4_d87785870391417a98d4b44486f23e20~mv2.jpg',t:'Gabe',m:'56 &times; 76 cm &mdash; charcoal and chalk on grey paper'},
-  {id:'5f27f4_5f45318c754244e9b9cc404413d3d443~mv2.jpg',t:'Adrian',m:'56 &times; 76 cm &mdash; charcoal and chalk on grey paper'},
-  {id:'5f27f4_2faaa634c90748f39567ba283115cb86~mv2.jpg',t:'Cowtail',m:'Charcoal, 50 &times; 70 cm'},
-  {id:'5f27f4_db63f76f071c4e019c0fb3d103d97d06~mv2.jpg',t:'I Loathe my Own Face',m:'Chalk, 76 &times; 58 cm'},
-  {id:'5f27f4_47d6289d450a47c397b6150cd8c3620d~mv2.jpg',t:'Myth of the Cowman III',m:'102 &times; 70 cm &mdash; charcoal on handmade cotton paper'},
-  {id:'5f27f4_310aa1d9d1f84fec91cfa42fcb9fdaef~mv2.jpg',t:'Breaker Boys',m:'Charcoal, 70 &times; 102 cm'},
-  {id:'5f27f4_7204bba18dd64b3a902db216fdce3f69~mv2.jpg',t:'Lockdown II',m:'Chalk, charcoal, gouache &mdash; 76 &times; 56 cm'},
-  {id:'5f27f4_e9c47dcbe9b94055bf5f50926b6ef135~mv2.jpg',t:'Lockdown I',m:'Chalk and charcoal'},
-  {id:'5f27f4_61f4418efdbb4a57960d9a107b2fb973~mv2.jpg',t:'Luca',m:'36 &times; 56 cm &mdash; charcoal'},
-  {id:'5f27f4_f84dbdd8f02e462eaf95f32688966ac4~mv2.jpg',t:'Aunt Speranta',m:'Chalk and charcoal on gouache &mdash; 71 &times; 49.5 cm'},
-  {id:'5f27f4_3f2060c1d8894161bca170e2859b22a2~mv2.jpg',t:'Ashton',m:'Charcoal, 37 &times; 49 cm'},
-  {id:'5f27f4_ce6705e7449c4c3c824185de31c0a825~mv2_d_1572_2242_s_2.jpg',t:'James',m:'Chalk, charcoal, acrylic &mdash; 76 &times; 56 cm'},
-  {id:'5f27f4_a68f5d36332a4f07b5fd8afd54a26ea0~mv2_d_2452_3065_s_4_2.jpg',t:'Louis',m:'Charcoal, 76 &times; 56 cm'},
-  {id:'5f27f4_99f29674ff41460791ad461b717e7f0f~mv2_d_2198_1536_s_2.jpg',t:'Stu Bennett',m:'Chalk and acrylic &mdash; 76 &times; 56 cm'},
-  {id:'5f27f4_4c57b0eb60f544ffa91047f98879912c~mv2.jpg',t:'Noel II',m:'60 &times; 80 cm &mdash; chalk and charcoal on grey paper'},
-  {id:'5f27f4_027b29809eb144b294c9c7846f32ad76~mv2.jpg',t:'Noel',m:'50 &times; 70 cm &mdash; chalk and charcoal'},
-  {id:'5f27f4_f2cec667c9da44e0aa7ac63bf8c426a0~mv2_d_1869_2560_s_2.jpg',t:'Picasso',m:'Chalk and charcoal, A3'},
-  {id:'5f27f4_326ec0d1f49e457f8ca3884d1f19fdb8~mv2_d_2167_3045_s_2.jpg',t:'Why so serious?',m:'59 &times; 70 cm &mdash; mixed media'},
-  {id:'5f27f4_43e1cd3649074e90940f8f68507f7ce1~mv2_d_2199_3175_s_2.jpg',t:'The Hitch',m:'50 &times; 70 cm &mdash; charcoal, chalk, gouache'},
-  {id:'5f27f4_a02d981e73ab41968a26ff8f94335e0f~mv2_d_4402_2944_s_4_2.jpg',t:'Fallen',m:'Charcoal on handmade paper &mdash; 106 &times; 71 cm'},
-  {id:'5f27f4_3839c008e12149329392de29b98a2772~mv2.jpg',t:'Isaac envied the Ram',m:'84 &times; 59 cm &mdash; chalk and charcoal on grey paper'},
-  {id:'5f27f4_a586ec54c63943a3b00c04eb17a124fa~mv2.jpg',t:'Lucian Freud',m:'Mixed media, 70 &times; 50 cm'},
-  {id:'5f27f4_4fc937bac00d4b048d142cc6b3087f4b~mv2_d_2726_3810_s_4_2.jpg',t:'&ldquo;I loathe my own face&rdquo;',m:'Francis Bacon &mdash; gouache, charcoal, chalk &mdash; 70 &times; 50 cm'},
-  {id:'5f27f4_c0d19ac3a8a6489aba90223b30555233~mv2_d_2436_3474_s_4_2.jpg',t:'&ldquo;War does not determine who is right &mdash; only who is left&rdquo;',m:'Bertrand Russell &mdash; gouache, charcoal, chalk &mdash; 70 &times; 50 cm'},
-];
+function resizeItem(item) {
+  const grid = item.closest('.masonry');
+  const rowGap = 8;
+  const rowH = 4;
+  const span = Math.ceil((item.querySelector('img').getBoundingClientRect().height + rowGap) / (rowH + rowGap));
+  item.style.gridRowEnd = `span ${span}`;
+}
 
-const P = [
-  {id:'5f27f4_b68c2a07473b4b739470e057a8554b14~mv2.jpg',t:'John',m:'51 &times; 40 cm &mdash; oil on linen canvas'},
-  {id:'5f27f4_1a9e4fee605642bd822cabadca05a9e9~mv2.jpg',t:'Ashton Reading',m:'Oil on canvas, 61 &times; 51 cm'},
-  {id:'5f27f4_c1e991bc405f4244a6085347f07c2009~mv2.jpg',t:'The View from Monastery Agias Pelagias, Tinos',m:'Oil on canvas, 101 &times; 76 cm'},
-  {id:'5f27f4_af1fdc63672d437d8d1d738ae9526822~mv2.jpg',t:'Andreas',m:'Oil on canvas, 120 &times; 90 cm &mdash; residency at the Aristide hotel, Syros'},
-  {id:'5f27f4_8e6792be56194bbfb041f4e40bd69412~mv2.jpg',t:'Marble Mason',m:'Oil on canvas, 60 &times; 60 cm'},
-  {id:'5f27f4_c1d8fbc20dc34755a2fb119f3c24d704~mv2_d_3819_2766_s_4_2.jpg',t:'Kostas',m:'Oil on canvas'},
-  {id:'5f27f4_3b2c678320794698998a53c30aaa46f0~mv2_d_2877_3449_s_4_2.jpg',t:'Stu Bennett',m:'Oil on canvas, 100 &times; 120 cm'},
-  {id:'5f27f4_bff87ebe13e743c899480f602ab06426~mv2_d_3056_3065_s_4_2.jpg',t:'Professor Noel Fitzpatrick',m:'1 &times; 1 m &mdash; oil on canvas'},
-  {id:'5f27f4_ac549fb0260548a8abe61f53a53dead0~mv2_d_2141_2560_s_2.jpg',t:'&ldquo;There is grandeur&hellip;&rdquo; II',m:'50 &times; 61 cm &mdash; oil on canvas'},
-  {id:'5f27f4_4a918dee4f7a4290bf546153ca7045b7~mv2_d_3447_2889_s_4_2.jpg',t:'Hiraeth',m:'120 &times; 100 cm &mdash; oil on canvas'},
-  {id:'5f27f4_da634a0b49a64925a543770c3280d4d7~mv2_d_2256_2727_s_2.jpg',t:'Untitled',m:'Oil, 61 &times; 51 cm'},
-  {id:'5f27f4_88c3b6c5044a4570adfca8a90fffa652~mv2_d_3883_2422_s_4_2.jpg',t:'Before the Law',m:'122 &times; 76 cm &mdash; oil on canvas'},
-  {id:'5f27f4_5ccce476d1d4403a86774b8b01f96ebf.jpg',t:'Let Them Have Dominion II',m:'Oil on canvas, 122 &times; 91 cm'},
-  {id:'5f27f4_832ff550549f4494a9dc346a7b1fb1bd.jpg',t:'Daniel',m:'122 &times; 76 cm &mdash; oil on canvas'},
-  {id:'5f27f4_50130d821d244f3e8a3ea4c5acf5ea73.jpg',t:'Self',m:'61 &times; 61 cm &mdash; oil on canvas'},
-  {id:'5f27f4_20d6aecb30c148b0bf82043959b0e365.jpg',t:'Josef',m:'Oil on canvas, 122 &times; 76 cm'},
-  {id:'5f27f4_9fb1fb618fea454fbe376fd12cf6f507.jpg',t:'Josef II',m:'Oil on canvas, 61 &times; 61 cm'},
-  {id:'5f27f4_33158facf1e94895b02b2252caf03ca3.jpg',t:'Self with Black Eye',m:'Oil on canvas, 61 &times; 61 cm'},
-  {id:'5f27f4_989e70cbc2154e6093d2ca859df56846.jpg',t:'There is a Great Gulf Fixed',m:'Oil on canvas, 122 &times; 76 cm'},
-  {id:'5f27f4_49c91e0f40f74c2b9ce6a9c551a3bb80.jpg',t:'Scar 14',m:'Oil on canvas, 102 &times; 76 cm'},
-  {id:'5f27f4_d948a645803e418d9f359edab6c2eb91.jpg',t:'Let Them Have Dominion',m:'Oil on canvas, 122 &times; 76 cm'},
-  {id:'5f27f4_6476ce6019ed4716ac9770fc25ffec21.jpg',t:'Self Portrait in Old Dairy',m:'Oil on canvas, 122 &times; 76 cm'},
-  {id:'5f27f4_057a16f1968c47c193da902e0409a942.jpg',t:'Moloch II',m:'Oil on canvas, 50 &times; 70 cm'},
-  {id:'5f27f4_053eeac96b4040bfaf14a62bfba49546.jpg',t:'Dairy',m:'Oil on canvas, 122 &times; 76 cm'},
-];
+function resizeMasonry(grid) {
+  grid.querySelectorAll('.mi').forEach(item => {
+    const img = item.querySelector('img');
+    if (img.complete) resizeItem(item);
+    else img.addEventListener('load', () => resizeItem(item), {once:true});
+  });
+}
 
-// Gallery
 function buildGrid(items, cid) {
   const c = document.getElementById(cid);
   c.innerHTML = '';
   items.forEach((item, i) => {
     const d = document.createElement('div');
     d.className = 'mi';
-    d.innerHTML = `<img src="${W(item.id)}" alt="${item.t}" loading="lazy"><div class="cap"><div class="ct">${item.t}</div><div class="cm">${item.m}</div></div>`;
+    d.innerHTML = `<img src="images/${item.id}" alt="${item.t}" loading="lazy"><div class="cap"><div class="ct">${item.t}</div><div class="cm">${item.m}</div></div>`;
     d.onclick = () => openLB(items, i);
     c.appendChild(d);
   });
+  resizeMasonry(c);
 }
 
-// Lightbox
-let cur = [], ci = 0, txStart = 0;
-
-function openLB(g, i) {
-  cur = g; ci = i; setLB();
-  document.getElementById('lb').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function setLB() {
-  const it = cur[ci];
-  document.getElementById('lbImg').src = W(it.id);
-  document.getElementById('lbT').innerHTML = it.t;
-  document.getElementById('lbM').innerHTML = it.m;
-  document.getElementById('lbC').textContent = (ci + 1) + ' / ' + cur.length;
-}
-function lbNav(d) { ci = (ci + d + cur.length) % cur.length; setLB(); }
-function closeLB() {
-  document.getElementById('lb').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// Swipe support
-const lb = document.getElementById('lb');
-lb.addEventListener('touchstart', e => { txStart = e.changedTouches[0].screenX; }, {passive:true});
-lb.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].screenX - txStart;
-  if (Math.abs(dx) > 40) lbNav(dx < 0 ? 1 : -1);
-}, {passive:true});
-
-// Close on backdrop tap (but not on image/caption)
-lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
-
-// Keyboard
-document.addEventListener('keydown', e => {
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLB();
-  if (e.key === 'ArrowLeft') lbNav(-1);
-  if (e.key === 'ArrowRight') lbNav(1);
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.masonry').forEach(resizeMasonry);
 });
 
-// Navigation
+let cur = [], ci = 0, txStart = 0;
+function openLB(g, i) { cur = g; ci = i; setLB(); document.getElementById('lb').classList.add('open'); document.body.style.overflow='hidden'; }
+function setLB() {
+  const it = cur[ci];
+  document.getElementById('lbImg').src = `images/${it.id}`;
+  document.getElementById('lbT').textContent = it.t;
+  document.getElementById('lbM').textContent = it.m;
+  document.getElementById('lbC').textContent = `${ci+1} / ${cur.length}`;
+}
+function lbNav(d) { ci = (ci+d+cur.length)%cur.length; setLB(); }
+function closeLB() { document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
+
+const lb = document.getElementById('lb');
+lb.addEventListener('touchstart', e => { txStart = e.changedTouches[0].screenX; }, {passive:true});
+lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].screenX - txStart; if(Math.abs(dx)>40) lbNav(dx<0?1:-1); }, {passive:true});
+lb.addEventListener('click', e => { if(e.target===lb) closeLB(); });
+document.addEventListener('keydown', e => {
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowLeft') lbNav(-1);
+  if(e.key==='ArrowRight') lbNav(1);
+});
+
 function go(page) {
-  document.querySelectorAll('section').forEach(s => s.classList.remove('act'));
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('act'));
   document.getElementById(page).classList.add('act');
-  document.querySelectorAll('nav ul a').forEach(a => a.classList.toggle('act', a.dataset.p === page));
-  window.scrollTo(0, 0);
-  closeMob();
+  document.querySelectorAll('nav ul a').forEach(a=>a.classList.toggle('act',a.dataset.p===page));
+  window.scrollTo(0,0); closeMob();
 }
 function toggleMob() { document.getElementById('mob').classList.toggle('open'); }
 function closeMob() { document.getElementById('mob').classList.remove('open'); }
 
-buildGrid(D, 'dGrid');
-buildGrid(P, 'pGrid');
+buildGrid(D,'dGrid');
+buildGrid(P,'pGrid');
 </script>
