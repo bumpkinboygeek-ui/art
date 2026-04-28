@@ -24,7 +24,7 @@ const GALLERY_DATA = {
     {id:'5f27f4_a586ec54c63943a3b00c04eb17a124fa~mv2.jpg',t:'Lucian Freud',m:'Mixed media, 70 × 50 cm'},
     {id:'5f27f4_4fc937bac00d4b048d142cc6b3087f4b~mv2_d_2726_3810_s_4_2.jpg',t:'"I loathe my own face"',m:'Francis Bacon — gouache, charcoal, chalk — 70 × 50 cm'},
     {id:'5f27f4_c0d19ac3a8a6489aba90223b30555233~mv2_d_2436_3474_s_4_2.jpg',t:'"War does not determine who is right — only who is left"',m:'Bertrand Russell — gouache, charcoal, chalk — 70 × 50 cm'},
-    {id:'_DSC0243.jpg',t:'Buk',m:'56 × 76 cm — charcoal and chalk'},
+    {id:'buk.jpg',t:'Buk',m:'56 × 76 cm — charcoal and chalk'},
   ],
   painting: [
     {id:'5f27f4_b68c2a07473b4b739470e057a8554b14~mv2.jpg',t:'John',m:'51 × 40 cm — oil on linen canvas'},
