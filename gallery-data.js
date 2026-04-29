@@ -24,7 +24,6 @@ const GALLERY_DATA = {
     {id:'5f27f4_a586ec54c63943a3b00c04eb17a124fa~mv2.jpg',t:'Lucian Freud',m:'Mixed media, 70 × 50 cm'},
     {id:'5f27f4_4fc937bac00d4b048d142cc6b3087f4b~mv2_d_2726_3810_s_4_2.jpg',t:'"I loathe my own face"',m:'Francis Bacon — gouache, charcoal, chalk — 70 × 50 cm'},
     {id:'5f27f4_c0d19ac3a8a6489aba90223b30555233~mv2_d_2436_3474_s_4_2.jpg',t:'"War does not determine who is right — only who is left"',m:'Bertrand Russell — gouache, charcoal, chalk — 70 × 50 cm'},
-    {id:'_DSC0243.jpg',t:'Buk',m:'56 × 76 cm — charcoal and chalk'},
     {id:'DSC0002-2.jpg',t:'James',m:'56 × 76 cm chalk, charcoal and acrylic'},
     {id:'DSC0470-3.jpg',t:'Self',m:'Chalk on black paper 37x49 cm'},
     {id:'DSC0454.jpg',t:'Dryer Shift',m:'Chalk on Black paper 58x42cm'},
@@ -47,6 +46,7 @@ const GALLERY_DATA = {
     {id:'Al.jpg',t:'Al',m:'Chalk, charcoal and acrylic 54x39cm'},
     {id:'Joshua.jpg',t:'Joshua',m:'Charcoal 36x56cm'},
     {id:'isla.jpg',t:'Isla',m:'Charcoal 36x56cm'},
+    {id:'buk.jpg',t:'Buk',m:'Chalk and charcoal 56x76cm'},
   ],
   painting: [
     {id:'5f27f4_b68c2a07473b4b739470e057a8554b14~mv2.jpg',t:'John',m:'51 × 40 cm — oil on linen canvas'},
