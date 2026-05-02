@@ -67,7 +67,6 @@ const GALLERY_DATA = {
     {id:'5f27f4_20d6aecb30c148b0bf82043959b0e365.jpg',t:'Josef',m:'Oil on canvas, 122 × 76 cm'},
     {id:'5f27f4_9fb1fb618fea454fbe376fd12cf6f507.jpg',t:'Josef II',m:'Oil on canvas, 61 × 61 cm'},
     {id:'5f27f4_33158facf1e94895b02b2252caf03ca3.jpg',t:'Self with Black Eye',m:'Oil on canvas, 61 × 61 cm'},
-    {id:'5f27f4_989e70cbc2154e6093d2ca859df56846.jpg',t:'There is a Great Gulf Fixed',m:'Oil on canvas, 122 × 76 cm'},
     {id:'5f27f4_49c91e0f40f74c2b9ce6a9c551a3bb80.jpg',t:'Scar 14',m:'Oil on canvas, 102 × 76 cm'},
     {id:'5f27f4_d948a645803e418d9f359edab6c2eb91.jpg',t:'Let Them Have Dominion',m:'Oil on canvas, 122 × 76 cm'},
     {id:'5f27f4_6476ce6019ed4716ac9770fc25ffec21.jpg',t:'Self Portrait in Old Dairy',m:'Oil on canvas, 122 × 76 cm'},
